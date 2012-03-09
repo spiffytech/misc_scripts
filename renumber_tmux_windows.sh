@@ -17,6 +17,6 @@
 i=1
 wids=`tmux list-windows | cut -d ':' -f 1`
 for wid in $wids; do
-    tmux move-window -s $wid -t $i
+    tmux move-window -s $wid -t $i 2>&1 | grep -P -v "can't move window: same index: \d+"
     i=`echo $(($i + 1))`
 done
